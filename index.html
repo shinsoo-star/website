@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변화추진 조직 상견례 워크숍 체크리스트</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #495057;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-icon {
+            margin-right: 10px;
+            font-size: 1.6rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .checklist-item:hover {
+            background: #f8f9fa;
+            border-left-color: #667eea;
+        }
+
+        .checklist-item.completed {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            margin-top: 2px;
+            accent-color: #667eea;
+            cursor: pointer;
+        }
+
+        .checklist-item label {
+            flex: 1;
+            cursor: pointer;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .checklist-item.completed label {
+            text-decoration: line-through;
+            color: #6c757d;
+        }
+
+        .priority-high {
+            border-left-color: #dc3545;
+        }
+
+        .priority-medium {
+            border-left-color: #ffc107;
+        }
+
+        .priority-low {
+            border-left-color: #28a745;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.2s ease;
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .progress-container {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤝 변화추진 조직 상견례 워크숍</h1>
+            <p>'25년 선배기수 & '26년 신규기수 팀워크 다지기</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">진행률: 0% (0/30 완료)</div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2><span class="section-icon">📋</span>워크숍 사전 준비</h2>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item1" onchange="updateProgress()">
+                    <label for="item1">상견례 목표 및 팀워크 활동 목적 명확히 정의</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item2" onchange="updateProgress()">
+                    <label for="item2">'25년 선배기수와 '26년 신규기수 참가자 명단 확정</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item3" onchange="updateProgress()">
+                    <label for="item3">팀빌딩에 적합한 워크숍 장소 예약 및 시설 점검</label>
+                </div>
+                
+                <div class="checklist-item priority-medium">
+                    <input type="checkbox" id="item4" onchange="updateProgress()">
+                    <label for="item4">팀 활동용 장비 준비 (프로젝터, 화이트보드, 마커, 포스트잇, 타이머)</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item5" onchange="updateProgress()">
+                    <label for="item5">선배-신규 기수 소개 자료 및 아이스브레이킹 게임 준비</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item6" onchange="updateProgress()">
+                    <label for="item6">팀워크 강화 활동 프로그램 및 교안 준비</label>
+                </div>
+                
+                <div class="checklist-item priority-medium">
+                    <input type="checkbox" id="item7" onchange="updateProgress()">
+                    <label for="item7">선배-신규 기수 매칭을 위한 그룹 편성 계획</label>
+                </div>
+                
+                <div class="checklist-item priority-low">
+                    <input type="checkbox" id="item8" onchange="updateProgress()">
+                    <label for="item8">워크숍 중 간식 및 점심 준비 (네트워킹 시간 고려)</label>
+                </div>
+                
+                <div class="checklist-item priority-medium">
+                    <input type="checkbox" id="item9" onchange="updateProgress()">
+                    <label for="item9">기수별 구분 네임택 및 좌석 배치도 준비</label>
+                </div>
+                
+                <div class="checklist-item priority-medium">
+                    <input type="checkbox" id="item10" onchange="updateProgress()">
+                    <label for="item10">사전 안내 메일 발송 (복장, 준비물, 일정 안내)</label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">🎯</span>상견례 & 팀워크 활동 진행</h2>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item11" onchange="updateProgress()">
+                    <label for="item11">참가자 출석 확인 및 따뜻한 환영 인사</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item12" onchange="updateProgress()">
+                    <label for="item12">상견례 목적 및 하루 일정 안내</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item13" onchange="updateProgress()">
+                    <label for="item13">선배기수 소개 및 변화추진 조직 활동 경험 공유</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item14" onchange="updateProgress()">
+                    <label for="item14">신규기수 자기소개 및 포부 발표 시간</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item15" onchange="updateProgress()">
+                    <label for="item15">아이스브레이킹 게임 (이름 맞추기, 공통점 찾기 등)</label>
+                </div>
+                
+                <div class="checklist-item priority-medium">
+                    <input type="checkbox" id="item16" onchange="updateProgress()">
+                    <label for="item16">선배-신규 기수 혼합팀 구성 및 팀명 정하기</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item17" onchange="updateProgress()">
+                    <label for="item17">팀워크 게임 1단계: 협력 미션 수행</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item18" onchange="updateProgress()">
+                    <label for="item18">팀워크 게임 2단계: 창의적 문제해결 활동</label>
+                </div>
+                
+                <div class="checklist-item priority-medium">
+                    <input type="checkbox" id="item19" onchange="updateProgress()">
+                    <label for="item19">점심식사 & 자유로운 네트워킹 시간</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item20" onchange="updateProgress()">
+                    <label for="item20">변화추진 조직의 미션과 비전 공유</label>
+                </div>
+                
+                <div class="checklist-item priority-medium">
+                    <input type="checkbox" id="item21" onchange="updateProgress()">
+                    <label for="item21">팀별 올해 활동 계획 수립 및 역할 분담</label>
+                </div>
+                
+                <div class="checklist-item priority-medium">
+                    <input type="checkbox" id="item22" onchange="updateProgress()">
+                    <label for="item22">각 팀 발표 및 상호 피드백 시간</label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">📝</span>마무리 및 후속 조치</h2>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item23" onchange="updateProgress()">
+                    <label for="item23">팀별 활동 결과 및 다짐 발표</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item24" onchange="updateProgress()">
+                    <label for="item24">선배-신규 기수 멘토-멘티 매칭 결과 정리</label>
+                </div>
+                
+                <div class="checklist-item priority-medium">
+                    <input type="checkbox" id="item25" onchange="updateProgress()">
+                    <label for="item25">향후 정기 모임 및 프로젝트 일정 공유</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item26" onchange="updateProgress()">
+                    <label for="item26">연락처 교환 및 단체 채팅방 개설</label>
+                </div>
+                
+                <div class="checklist-item priority-medium">
+                    <input type="checkbox" id="item27" onchange="updateProgress()">
+                    <label for="item27">워크숍 만족도 및 개선 의견 설문조사</label>
+                </div>
+                
+                <div class="checklist-item priority-high">
+                    <input type="checkbox" id="item28" onchange="updateProgress()">
+                    <label for="item28">단체 사진 촬영 및 기념품 전달</label>
+                </div>
+                
+                <div class="checklist-item priority-medium">
+                    <input type="checkbox" id="item29" onchange="updateProgress()">
+                    <label for="item29">상견례 결과 보고서 작성 및 사진 정리</label>
+                </div>
+                
+                <div class="checklist-item priority-low">
+                    <input type="checkbox" id="item30" onchange="updateProgress()">
+                    <label for="item30">장비 정리 및 장소 정리</label>
+                </div>
+            </div>
+
+            <button class="reset-btn" onclick="resetChecklist()">체크리스트 초기화</button>
+        </div>
+
+        <div class="footer">
+            <p>🤝 선배기수와 신규기수가 함께 성장하는 의미있는 상견례를 만들어보세요!</p>
+            <p>각 항목의 왼쪽 색상은 우선순위를 나타냅니다: 🔴 높음 | 🟡 보통 | 🟢 낮음</p>
+        </div>
+    </div>
+
+    <script>
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checkedBoxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            const total = checkboxes.length;
+            const completed = checkedBoxes.length;
+            const percentage = Math.round((completed / total) * 100);
+            
+            // Update progress bar
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            progressFill.style.width = percentage + '%';
+            progressText.textContent = `진행률: ${percentage}% (${completed}/${total} 완료)`;
+            
+            // Update item styling
+            checkboxes.forEach(checkbox => {
+                const item = checkbox.closest('.checklist-item');
+                if (checkbox.checked) {
+                    item.classList.add('completed');
+                } else {
+                    item.classList.remove('completed');
+                }
+            });
+            
+            // Save to localStorage
+            const checkboxStates = {};
+            checkboxes.forEach(checkbox => {
+                checkboxStates[checkbox.id] = checkbox.checked;
+            });
+            localStorage.setItem('workshopChecklistStates', JSON.stringify(checkboxStates));
+        }
+        
+        function resetChecklist() {
+            if (confirm('정말로 체크리스트를 초기화하시겠습니까?')) {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                updateProgress();
+                localStorage.removeItem('workshopChecklistStates');
+            }
+        }
+        
+        // Load saved states on page load
+        window.addEventListener('load', function() {
+            const savedStates = localStorage.getItem('workshopChecklistStates');
+            if (savedStates) {
+                const checkboxStates = JSON.parse(savedStates);
+                Object.entries(checkboxStates).forEach(([id, checked]) => {
+                    const checkbox = document.getElementById(id);
+                    if (checkbox) {
+                        checkbox.checked = checked;
+                    }
+                });
+            }
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

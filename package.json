@@ -1,0 +1,16 @@
+{
+  "name": "workshop-checklist",
+  "version": "1.0.0",
+  "description": "변화추진 조직 상견례 워크숍 체크리스트",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve -s .",
+    "build": "echo 'No build process needed for static site'"
+  },
+  "keywords": ["workshop", "checklist", "teamwork", "상견례"],
+  "author": "변화추진조직",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}
